@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kelly.newsly.R
 import com.kelly.newsly.adapter.NewsAdapter
+import com.kelly.newsly.classes.LoadingDialog
 import com.kelly.newsly.databinding.FragmentHomeBinding
 import com.kelly.newsly.viewmodel.NewsViewModel
 
@@ -27,19 +28,17 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        binding.progressBar.visibility = View.VISIBLE
-
         newsViewModel = ViewModelProvider(requireActivity())[NewsViewModel::class.java]
 
         newsAdapter = NewsAdapter(listOf()) { news ->
             val action = HomeFragmentDirections.actionHomeFragmentToNewsDetailsFragment(
                 news.image,
                 news.title,
-                news.description
+                news.description,
+                news.url
             )
             findNavController().navigate(action)
         }
-
 
         newsViewModel.run {
             getAllNews()
@@ -59,8 +58,6 @@ class HomeFragment : Fragment() {
                 alpha(0f)
                 duration = 3000
             }.start()
-
-            progressBar.visibility = View.GONE
         }
 
         return binding.root
