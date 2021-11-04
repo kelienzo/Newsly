@@ -1,6 +1,8 @@
 package com.kelly.newsly.fragments
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -38,6 +40,9 @@ class HomeFragment : Fragment() {
                 news.url
             )
             findNavController().navigate(action)
+
+//            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(news.url))
+//            startActivity(intent)
         }
 
         newsViewModel.run {
