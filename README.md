@@ -10,5 +10,5 @@ And also on the homepage you can also make a search using the title for the news
 # What i used
 - Retrofit
 - Fragments
-- Kotlin Coroutine
+- Kotlin Coroutines
 - Glide to display the image fetched from the api
